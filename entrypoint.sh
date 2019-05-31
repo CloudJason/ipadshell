@@ -14,15 +14,15 @@ fi
 cd ~/code/ipadshell
 git remote set-url origin git@github.com:CloudJason/ipadshell.git
 
-#echo "Creating symlinks for dotfiles"
-#ln -s $(pwd)/vimrc ~/.vimrc
-#ln -s $(pwd)/zshrc ~/.zshrc
-#ln -s $(pwd)/tmuxconf ~/.tmux.conf
-#ln -s $(pwd)/tigrc ~/.tigrc
-#ln -s $(pwd)/git-prompt.sh ~/.git-prompt.sh
-#ln -s $(pwd)/gitconfig ~/.gitconfig
-#ln -s $(pwd)/agignore ~/.agignore
-#ln -s $(pwd)/sshconfig ~/.ssh/config
+echo "Creating symlinks for dotfiles"
+ln -s $(pwd)/rc-files/vimrc ~/.vimrc
+ln -s $(pwd)/rc-files/zshrc ~/.zshrc
+ln -s $(pwd)/rc-files/tmuxconf ~/.tmux.conf
+ln -s $(pwd)/rc-files/tigrc ~/.tigrc
+ln -s $(pwd)/rc-files/git-prompt.sh ~/.git-prompt.sh
+ln -s $(pwd)/rc-files/gitconfig ~/.gitconfig
+ln -s $(pwd)/rc-files/agignore ~/.agignore
+ln -s $(pwd)/rc-files/sshconfig ~/.ssh/config
 
 # copy files linked in .zshrc
 #cd ~/code/dotfiles/workstation
