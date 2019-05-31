@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ipadshell
+  namespace: ipadshell
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ipadshell
+  template:
+    metadata:
+      labels:
+        app: ipadshell
+    spec:
+      containers:
+      - name: ipadshell
+        image: us.icr.io/argo/ipadshell
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3222
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ipadshell
+  namespace: ipadshell
+spec:
+  selector:
+    app: ipadshell
+  ports:
+  - port: 3222
+    targetPort: 3222
+  type: LoadBalancer
+---

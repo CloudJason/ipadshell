@@ -2,15 +2,16 @@
 
 set -e
 
-if [ ! -d ~/code/dotfiles ]; then
-  echo "Cloning dotfiles"
+if [ ! -d ~/code/ipadshell ]; then
+  echo "Cloning ipadshell"
   # the reason we dont't copy the files individually is, to easily push changes
   # if needed
+  mkdir ~/code
   cd ~/code
   git clone https://github.com/CloudJason/ipadshell.git
+fi
 
-
-cd ~/code/dotfiles 
+cd ~/code/ipadshell
 git remote set-url origin git@github.com:CloudJason/ipadshell.git
 
 #echo "Creating symlinks for dotfiles"
@@ -42,5 +43,5 @@ git remote set-url origin git@github.com:CloudJason/ipadshell.git
 #ln -s ~/opt/kubectx/completion/kubectx.zsh ~/opt/completion/_kubectx.zsh
 #ln -s ~/opt/kubectx/completion/kubens.zsh ~/opt/completion/_kubens.zsh
 
-
+echo "Running sshd"
 /usr/sbin/sshd -D

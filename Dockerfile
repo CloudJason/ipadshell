@@ -192,14 +192,6 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
 	dpkg-reconfigure --frontend=noninteractive locales && \
 	update-locale LANG=$LANG LC_ALL=$LC_ALL LANGUAGE=$LANGUAGE
 
-# gcloud
-RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" && \
-  echo "deb http://packages.cloud.google.com/apt $CLOUD_SDK_REPO main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
-  curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
-  apt-get update -y && apt-get install google-cloud-sdk google-cloud-sdk-app-engine-go -y
-
-RUN wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy && chmod +x cloud_sql_proxy && mv cloud_sql_proxy /usr/local/bin
-
 # for correct colours is tmux
 ENV TERM screen-256color
 
