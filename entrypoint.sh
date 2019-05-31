@@ -6,7 +6,7 @@ if [ ! -d ~/code/ipadshell ]; then
   echo "Cloning ipadshell"
   # the reason we dont't copy the files individually is, to easily push changes
   # if needed
-  mkdir ~/code
+  mkdir -p ~/code
   cd ~/code
   git clone https://github.com/CloudJason/ipadshell.git
 fi
@@ -24,9 +24,13 @@ ln -s $(pwd)/rc-files/gitconfig ~/.gitconfig
 ln -s $(pwd)/rc-files/agignore ~/.agignore
 ln -s $(pwd)/rc-files/sshconfig ~/.ssh/config
 
-# copy files linked in .zshrc
-#cd ~/code/dotfiles/workstation
-#echo "Copying IKS related files"
+# Copy IKS config files
+cd ~/code/clusters
+echo "Copying IKS related files"
+mkdir -p /root/.bluemix/plugins/container-service/clusters
+cp -R * /root/.bluemix/plugins/container-service/clusters
+
+
 #mkdir ~/.kube 
 #cp kubeconfig ~/.kube/config
 
