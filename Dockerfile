@@ -251,6 +251,9 @@ RUN curl -sL https://ibm.biz/idt-installer | bash
 # RUN ibmcloud plugin install kubernetes-service
 # RUN ibmcloud plugin install container-registry
 
+# copy kube cluster configs
+COPY clusters /root/code/clusters
+
 RUN chsh -s /usr/bin/zsh
 
 EXPOSE 3222 60000-60010/udp
