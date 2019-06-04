@@ -258,3 +258,6 @@ eval "$(direnv hook zsh)"
 
 # Setup Kubeconfig
 export KUBECONFIG=$(merge_kubeconfig.sh)
+
+source "~/opt/kube-ps1.sh"
+PS1='$(kube_ps1)'$PS1
