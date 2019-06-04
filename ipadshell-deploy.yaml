@@ -19,18 +19,3 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3222
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: ipadshell
-  namespace: ipadshell
-spec:
-  selector:
-    app: ipadshell
-  ports:
-  - port: 3222
-    targetPort: 3222
-  type: LoadBalancer
----

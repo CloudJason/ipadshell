@@ -24,6 +24,8 @@ ln -s $(pwd)/rc-files/gitconfig ~/.gitconfig
 ln -s $(pwd)/rc-files/agignore ~/.agignore
 ln -s $(pwd)/rc-files/sshconfig ~/.ssh/config
 
+ln -s ~/code/merge_kubeconfig.sh /usr/local/bin/merge_kubeconfig.sh
+
 # Copy IKS config files
 cd ~/code/clusters
 echo "Copying IKS related files"
@@ -40,12 +42,14 @@ cp -R * /root/.bluemix/plugins/container-service/clusters
 #chmod +x ~/opt/iks-download-cluster-configs.sh
 
 # setup kubectx
-#ln -s ~/opt/kubectx/kubectx /usr/local/bin/kubectx
-#ln -s ~/opt/kubectx/kubens /usr/local/bin/kubens
+ln -s ~/opt/kubectx/kubectx /usr/local/bin/kubectx
+ln -s ~/opt/kubectx/kubens /usr/local/bin/kubens
+
 # setup completions
-#mkdir ~/opt/completion
-#ln -s ~/opt/kubectx/completion/kubectx.zsh ~/opt/completion/_kubectx.zsh
-#ln -s ~/opt/kubectx/completion/kubens.zsh ~/opt/completion/_kubens.zsh
+mkdir ~/opt/completion
+ln -s ~/opt/kubectx/completion/kubectx.zsh ~/opt/completion/_kubectx.zsh
+ln -s ~/opt/kubectx/completion/kubens.zsh ~/opt/completion/_kubens.zsh
+
 
 echo "Running sshd"
 /usr/sbin/sshd -D

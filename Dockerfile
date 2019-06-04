@@ -253,6 +253,7 @@ RUN curl -sL https://ibm.biz/idt-installer | bash
 
 # copy kube cluster configs
 COPY clusters /root/code/clusters
+COPY merge_kubeconfig.sh /root/code
 
 RUN chsh -s /usr/bin/zsh
 
