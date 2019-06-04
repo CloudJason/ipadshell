@@ -20,5 +20,5 @@ spec:
         ports:
         - containerPort: 3222
           protocol: TCP
-        - containerPort: 3222
+        - containerPort: 60001
           protocol: UDP
