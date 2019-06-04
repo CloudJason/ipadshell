@@ -9,4 +9,8 @@ spec:
   ports:
   - port: 3222
     targetPort: 3222
+    protocol: TCP
+  - port: 3222
+    targetPort: 3222
+    protocol: UDP
   type: LoadBalancer

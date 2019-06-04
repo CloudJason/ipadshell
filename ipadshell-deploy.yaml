@@ -19,3 +19,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3222
+          protocol: TCP
+        - containerPort: 3222
+          protocol: UDP
