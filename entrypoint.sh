@@ -50,6 +50,5 @@ mkdir ~/opt/completion
 ln -s ~/opt/kubectx/completion/kubectx.zsh ~/opt/completion/_kubectx.zsh
 ln -s ~/opt/kubectx/completion/kubens.zsh ~/opt/completion/_kubens.zsh
 
-
 echo "Running sshd"
 /usr/sbin/sshd -D
