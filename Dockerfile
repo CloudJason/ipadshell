@@ -16,16 +16,6 @@ RUN wget https://github.com/openshift/origin/releases/download/v3.11.0/openshift
   rm openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz
 
 
-# install 1password
-FROM ubuntu:18.10 as onepassword_builder
-RUN apt-get update && apt-get install -y curl ca-certificates unzip
-RUN curl -sS -o 1password.zip https://cache.agilebits.com/dist/1P/op/pkg/v0.5.5/op_linux_amd64_v0.5.5.zip && unzip 1password.zip op -d /usr/bin &&  rm 1password.zip
-
-# install doctl
-FROM ubuntu:18.10 as doctl_builder
-RUN apt-get update && apt-get install -y wget ca-certificates
-RUN wget https://github.com/digitalocean/doctl/releases/download/v1.12.2/doctl-1.12.2-linux-amd64.tar.gz && tar xf doctl-1.12.2-linux-amd64.tar.gz && chmod +x doctl && mv doctl /usr/local/bin && rm doctl-1.12.2-linux-amd64.tar.gz
-
 # install terraform
 FROM ubuntu:18.10 as terraform_builder
 RUN apt-get update && apt-get install -y wget ca-certificates unzip
@@ -92,7 +82,6 @@ RUN go get -u github.com/aybabtme/humanlog/cmd/...
 RUN go get -u github.com/fatih/hclfmt
 RUN GIT_TAG="v1.2.0" && go get -d -u github.com/golang/protobuf/protoc-gen-go && git -C "$(go env GOPATH)"/src/github.com/golang/protobuf checkout $GIT_TAG && go install github.com/golang/protobuf/protoc-gen-go
 
-
 # base OS
 FROM ubuntu:18.10
 ENV DEBIAN_FRONTEND=noninteractive
@@ -138,6 +127,7 @@ RUN apt-get update -qq && apt-get upgrade -y && apt-get install -qq -y \
 	musl-tools \
 	ncdu \
 	netcat-openbsd \
+	net-tools \
 	openssh-server \
 	pkg-config \
 	postgresql-contrib \
@@ -201,14 +191,8 @@ COPY --from=kubectl_builder /usr/local/bin/kubectl /usr/local/bin/
 # oc 
 COPY --from=oc_builder /usr/local/bin/oc /usr/local/bin/
 
-# 1password
-COPY --from=onepassword_builder /usr/bin/op /usr/local/bin/
-
 # golang tools
 COPY --from=golang_builder /go/bin/* /usr/local/bin/
-
-# doctl tools
-COPY --from=doctl_builder /usr/local/bin/doctl /usr/local/bin/
 
 # terraform tools
 COPY --from=terraform_builder /usr/local/bin/terraform /usr/local/bin/
@@ -248,6 +232,7 @@ RUN git clone https://github.com/ahmetb/kubectx ~/opt/kubectx
 
 # install IBM Cloud CLI and plugins
 RUN curl -sL https://ibm.biz/idt-installer | bash
+RUN ibmcloud update -f
 RUN ibmcloud plugin update --all
 
 COPY merge_kubeconfig.sh /root/code/merge_kubeconfig.sh
