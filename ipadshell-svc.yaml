@@ -11,4 +11,5 @@ spec:
     name: ssh
     targetPort: 3222
     protocol: TCP
+  loadBalancerIP: 169.47.157.120
   type: LoadBalancer

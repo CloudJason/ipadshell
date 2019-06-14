@@ -20,5 +20,12 @@ spec:
         ports:
         - containerPort: 3222
           protocol: TCP
-        - containerPort: 60001
+        - containerPort: 32721
           protocol: UDP
+        volumeMounts:
+        - name: ipadshell-storage
+          mountPath: /root/storage
+      volumes:
+      - name: ipadshell-storage
+        persistentVolumeClaim:
+          claimName: ipadshell-storage

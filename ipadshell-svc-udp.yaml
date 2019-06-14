@@ -7,8 +7,8 @@ spec:
   selector:
     app: ipadshell
   ports:
-  - port: 60001
+  - port: 32721
     name: mosh
-    targetPort: 60001
     protocol: UDP
-  type: LoadBalancer
+    nodePort: 32721
+  type: NodePort

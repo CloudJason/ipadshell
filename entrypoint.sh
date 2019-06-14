@@ -26,20 +26,8 @@ ln -s $(pwd)/rc-files/sshconfig ~/.ssh/config
 
 ln -s ~/code/merge_kubeconfig.sh /usr/local/bin/merge_kubeconfig.sh
 
-# Copy IKS config files
-cd ~/code/clusters
-echo "Copying IKS related files"
-mkdir -p /root/.bluemix/plugins/container-service/clusters
-cp -R * /root/.bluemix/plugins/container-service/clusters
-
-
-#mkdir ~/.kube 
-#cp kubeconfig ~/.kube/config
-
-#cp iks-merged-config.sh ~/opt/iks-merged-config.sh
-#cp iks-download-cluster-configs.sh ~/opt/iks-download-cluster-configs.sh
-#chmod +x ~/opt/iks-merged-config.sh
-#chmod +x ~/opt/iks-download-cluster-configs.sh
+# Link IKS config files
+ln -s /root/storage/clusters /root/.bluemix/plugins/container-service/clusters
 
 # setup kubectx
 ln -s ~/opt/kubectx/kubectx /usr/local/bin/kubectx

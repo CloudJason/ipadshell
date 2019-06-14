@@ -248,18 +248,17 @@ RUN git clone https://github.com/ahmetb/kubectx ~/opt/kubectx
 
 # install IBM Cloud CLI and plugins
 RUN curl -sL https://ibm.biz/idt-installer | bash
-# RUN ibmcloud plugin install kubernetes-service
-# RUN ibmcloud plugin install container-registry
+RUN ibmcloud plugin update --all
 
-# copy kube cluster configs
-COPY clusters /root/code/clusters
-COPY merge_kubeconfig.sh /root/code
+COPY merge_kubeconfig.sh /root/code/merge_kubeconfig.sh
 
 RUN chsh -s /usr/bin/zsh
 
-EXPOSE 3222 60000-60010/udp
+EXPOSE 3222 
+EXPOSE 32721/udp
+
 WORKDIR /root
-# copy entrypoint command scriopt
+# copy entrypoint command script
 COPY entrypoint.sh /bin/entrypoint.sh
 CMD ["/bin/entrypoint.sh"]
 

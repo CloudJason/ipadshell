@@ -1,0 +1,17 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: ipadshell-storage
+  namespace: ipadshell
+  annotations:
+    ibm.io/auto-create-bucket: "false"
+    ibm.io/auto-delete-bucket: "false"
+    ibm.io/bucket: "ipadshell"
+    ibm.io/secret-name: "cos-write-access"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 8Gi # Enter a fictitious value
+  storageClassName: ibmc-s3fs-standard-regional
