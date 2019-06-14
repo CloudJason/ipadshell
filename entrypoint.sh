@@ -24,10 +24,9 @@ ln -s $(pwd)/rc-files/gitconfig ~/.gitconfig
 ln -s $(pwd)/rc-files/agignore ~/.agignore
 ln -s $(pwd)/rc-files/sshconfig ~/.ssh/config
 
-ln -s ~/code/merge_kubeconfig.sh /usr/local/bin/merge_kubeconfig.sh
-
 # Link IKS config files
 ln -s /root/storage/clusters /root/.bluemix/plugins/container-service/clusters
+ln -s ~/code/merge_kubeconfig.sh /usr/local/bin/merge_kubeconfig.sh
 
 # setup kubectx
 ln -s ~/opt/kubectx/kubectx /usr/local/bin/kubectx

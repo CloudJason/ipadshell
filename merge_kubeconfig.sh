@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # IBM Cloud Kubernetes Service cluster config dir
-clustersdir=~/.bluemix/plugins/container-service/clusters
+clustersdir=/root/storage/clusters
 
 #Produce a Kubernetes merged config string to be used with the KUBECONF environment variable.
 
